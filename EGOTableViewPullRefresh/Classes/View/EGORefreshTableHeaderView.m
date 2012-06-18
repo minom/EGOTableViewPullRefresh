@@ -129,6 +129,13 @@
 
 }
 
+- (void)simulateUserRefreshOnScrollView:(UIScrollView *)scrollView {
+    scrollView.contentInset = UIEdgeInsetsMake(66.0f, 0.0f, 0.0f, 0.0f);
+    [scrollView setContentOffset:CGPointMake(0, -66.0f) animated:NO];
+    [self setState:EGOOPullRefreshLoading];
+    
+}
+
 - (void)setState:(EGOPullRefreshState)aState{
 	
 	switch (aState) {
@@ -163,7 +170,7 @@
 			break;
 		case EGOOPullRefreshLoading:
 			
-			_statusLabel.text = NSLocalizedString(@"Loading...", @"Loading Status");
+			_statusLabel.text = NSLocalizedString(@"Loading Friends...", @"Loading Status");
 			[_activityView startAnimating];
 			[CATransaction begin];
 			[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions]; 
